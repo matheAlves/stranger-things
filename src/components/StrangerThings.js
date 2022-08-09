@@ -4,8 +4,6 @@ import Table from './Table';
 
 require('dotenv').config();
 
-const dev = process.env.REACT_APP_DEV;
-
 const getRealityClass = (hereIsTheUpsideDownWorld) => (
   hereIsTheUpsideDownWorld ? 'upside-down' : 'stranger-things'
 );
@@ -32,6 +30,7 @@ class StrangerThings extends React.Component {
       characterName: '',
       characters: [],
       page: 1,
+      dev: process.env.REACT_APP_DEV,
     };
 
     this.handleInput = this.handleInput.bind(this);
@@ -109,7 +108,7 @@ class StrangerThings extends React.Component {
 
   render() {
     const {
-      hereIsTheUpsideDownWorld, characterName, characters, page,
+      hereIsTheUpsideDownWorld, characterName, characters, page, dev,
     } = this.state;
     return (
       <div
@@ -118,7 +117,7 @@ class StrangerThings extends React.Component {
         )}` }
       >
         <div className="content strangerfy">
-          { dev ? <p>Em desenvolvimento</p> : '' }
+          { (dev === true) ? <p>Em desenvolvimento</p> : '' }
           <div className="change-reality">
             <button type="button" onClick={ this.changeRealityClick }>
               {' '}
